@@ -22,10 +22,23 @@ class Service {
   };
 
   deleteItem = (link) => {
-    this.setStorage(this.getItems().filter((item) => item.link !== link));
+    this.setStorage(this.getItems().filter((item) => item.url !== link));
   };
 
-  updateItem = (link, vote) => {};
+  updateItem = (link, type) => {
+    this.setStorage(
+      this.getItems().map((item) => {
+        if (item.url !== link) {
+          return item;
+        }
+
+        return {
+          ...item,
+          vote:item.vote + ( type === 'upvote' ? 1 : -1),
+        };
+      })
+    );
+  };
 
   getItems = () => {
     const items = localStorage.getItem(STORAGE_KEY);

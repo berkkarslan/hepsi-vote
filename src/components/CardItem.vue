@@ -1,15 +1,64 @@
-<template>
-  <div class="">
-    
-  </div>
-</template>
-
 <script>
+import { deleteItem, updateItem } from "@/services/service.js";
 export default {
-  
-}
+  props: {
+    name: { type: String, required: true },
+    url: { type: String, required: true },
+    vote: { type: Number, required: true },
+  },
+  methods: {
+    deleteItem() {
+      deleteItem(this.url);
+    },
+    voteButton(type) {
+      updateItem(this.url, type);
+    },
+  },
+};
 </script>
 
-<style scoped>
+<template>
+  <b-card class="mt-2 mb-2 mw-100 w-100 position-relative card-item">
+    <b-card-body>
+      <b-row>
+        <b-col class="mb-4 mb-sm-0 col-sm-3">
+          <div
+            class="
+              border
+              mr-3
+              rounded
+              d-flex
+              justify-content-center
+              align-items-center
+              point-square
+            "
+          >
+            <span>{{ vote }}</span>
+            <span>Points</span>
+          </div>
+        </b-col>
+        <b-col class="col-sm-9">
+          <b-card-title class="mb-1 text-ellipsis">{{ name }}</b-card-title>
 
-</style>
+          <small class="mb-2 text-muted text-ellipsis d-block">
+            {{ url }}
+          </small>
+          <b-row class="mt-2">
+            <b-col class="col-sm-6">
+              <b-icon-chevron-up @click="voteButton('upvote')"></b-icon-chevron-up> Up
+              Vote
+            </b-col>
+
+            <b-col class="col-sm-6">
+              <b-icon-chevron-down
+                @click="voteButton('downvote')"
+              ></b-icon-chevron-down>
+              Down Vote
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-card-body>
+    <b-icon-trash @click="deleteItem" class="trash-btn"></b-icon-trash>
+  </b-card>
+</template>

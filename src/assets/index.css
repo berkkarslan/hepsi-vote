@@ -1,0 +1,26 @@
+.card-item .card-body {
+  padding: 10px;
+}
+.card-item .point-square {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+}
+.card-item .point-square span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.card-item .point-square span:last-child {
+  font-weight: normal;
+}
+.card-item .trash-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+.card-item:hover .trash-btn {
+  opacity: 1;
+}
