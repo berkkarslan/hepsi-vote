@@ -1,6 +1,6 @@
 <script>
 import vSelect from "vue-select";
-import { listItems } from "../services/service";
+import { deleteItem, listItems } from "../services/service";
 import CardItem from "./CardItem";
 export default {
   name: "List",
@@ -13,12 +13,14 @@ export default {
       sortOptions: [
         { id: "1", name: "Newest" },
         { id: "2", name: "Oldest" },
-        { id: "3", name: "Less Voted (A > Z)" },
-        { id: "4", name: "Most Voted (Z > A)" },
+        { id: "3", name: "Less Voted" },
+        { id: "4", name: "Most Voted" },
       ],
       selectedSort: null,
       links: [],
       paginate: ["links"],
+      modalShow: false,
+      deleteLink: null,
     };
   },
   created() {
@@ -27,6 +29,18 @@ export default {
   methods: {
     getData() {
       this.links = listItems(this.selectedSort?.id);
+    },
+    showModal(link) {
+      this.modalShow = true;
+      this.deleteLink = link;
+    },
+    deleteFnc() {
+      if (this.deleteLink) {
+        deleteItem(this.deleteLink);
+        this.modalShow = false;
+        this.deleteLink = null;
+        this.getData();
+      }
     },
   },
 };
@@ -51,8 +65,30 @@ export default {
         :url="item.url"
         :vote="item.vote"
         @fetchLinks="getData"
+        @deleteItem="showModal"
       />
     </paginate>
     <paginate-links for="links" :show-step-links="true"></paginate-links>
+    <b-modal v-model="modalShow">
+      <template #modal-title> Delete Link </template>
+
+      <p>
+        Do you want to remove:
+
+        <b>{{ deleteLink }}</b>
+      </p>
+      <template #modal-footer>
+        <b-button variant="secondary" @click="modalShow = false">
+          Close
+        </b-button>
+        <b-button
+          variant="danger"
+          @click="deleteFnc"
+          class="d-flex justify-content-center align-items-center"
+        >
+          Delete
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>

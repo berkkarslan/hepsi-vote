@@ -1,5 +1,5 @@
 <script>
-import { deleteItem, updateItem } from "@/services/service.js";
+import { updateItem } from "@/services/service.js";
 export default {
   props: {
     name: { type: String, required: true },
@@ -8,8 +8,7 @@ export default {
   },
   methods: {
     deleteItem() {
-      deleteItem(this.url);
-      this.$emit("fetchLinks");
+      this.$emit("deleteItem", this.url);
     },
     voteButton(type) {
       updateItem(this.url, type);
