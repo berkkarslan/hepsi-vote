@@ -22,8 +22,7 @@ export default {};
             <b-col
               class="
                 d-flex
-                justify-content-md-end
-                justify-content-center
+                justify-content-md-end justify-content-center
                 col-sm-12 col-md-6
               "
             >
