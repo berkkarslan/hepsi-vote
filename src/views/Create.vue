@@ -1,20 +1,29 @@
 <script>
+import { addItem } from "@/services/service.js";
 export default {
-  data(){
+  data() {
     return {
       form: {
-        name: '',
-        link: '',
-        },
-    }
+        name: "",
+        url: "",
+      },
+    };
   },
   methods: {
-    addLink(event){
-      event.preventDefault()
-      alert(JSON.stringify(this.form))
-    }
-  }
-}
+    resetForm() {
+      this.form = {
+        name: "",
+        url: "",
+      };
+    },
+    addLink(event) {
+      event.preventDefault();
+      addItem(this.form)
+        .then(() => this.resetForm())
+        .catch(() => {});
+    },
+  },
+};
 </script>
 
 <template>
@@ -30,16 +39,22 @@ export default {
         <b-row>
           <b-form class="w-100" @submit="addLink">
             <b-form-group label="Link Name:">
-              <b-form-input placeholder="e.g. Alphabet" name="name" v-model="form.name" />
+              <b-form-input
+                placeholder="e.g. Alphabet"
+                name="name"
+                v-model="form.name"
+              />
             </b-form-group>
 
             <b-form-group class="mt-3" label="Link Url:">
-              <b-form-input placeholder="e.g. https://abc.xyz" name="url" v-model="form.link" />
+              <b-form-input
+                placeholder="e.g. https://abc.xyz"
+                name="url"
+                v-model="form.url"
+              />
             </b-form-group>
             <b-form-group class="mt-3 text-end">
-              <b-button variant="primary" type="submit">
-                Add
-              </b-button>
+              <b-button variant="primary" type="submit"> Add </b-button>
             </b-form-group>
           </b-form>
         </b-row>
