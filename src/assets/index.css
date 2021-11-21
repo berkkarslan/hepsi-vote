@@ -27,4 +27,34 @@
 
 .vote-btn{
   cursor: pointer;
+  user-select: none;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+ .paginate-links {
+  list-style-type: none;
+  padding: 0;
+  user-select: none;
+  text-align: center;
+}
+.paginate-links  a {
+  cursor: pointer;
+}
+.paginate-links  li.active a {
+  font-weight: bold;
+}
+.paginate-links  li.next:before {
+  content: " | ";
+  margin-right: 13px;
+  color: #ddd;
+}
+.paginate-links  li.disabled a {
+  color: #ccc;
+  cursor: no-drop;
+}
+a {
+  color: #42b983 !important;
 }

@@ -9,9 +9,11 @@ export default {
   methods: {
     deleteItem() {
       deleteItem(this.url);
+      this.$emit("fetchLinks");
     },
     voteButton(type) {
       updateItem(this.url, type);
+      this.$emit("fetchLinks");
     },
   },
 };
@@ -45,19 +47,15 @@ export default {
           </small>
           <b-row class="mt-2">
             <b-col class="col-sm-6">
-              <div class="vote-btn">
-                <b-icon-chevron-up
-                  @click="voteButton('upvote')"
-                ></b-icon-chevron-up>
+              <div class="vote-btn" @click="voteButton('upvote')">
+                <b-icon-chevron-up></b-icon-chevron-up>
                 Up Vote
               </div>
             </b-col>
 
             <b-col class="col-sm-6">
-              <div class="vote-btn">
-                <b-icon-chevron-down
-                  @click="voteButton('downvote')"
-                ></b-icon-chevron-down>
+              <div class="vote-btn" @click="voteButton('downvote')">
+                <b-icon-chevron-down></b-icon-chevron-down>
                 Down Vote
               </div>
             </b-col>

@@ -1,28 +1,9 @@
 <script>
-import vSelect from "vue-select";
-import { listItems } from "@/services/service";
-import CardItem from "@/components/CardItem";
+import List from "@/components/List";
 export default {
   name: "Home",
   components: {
-    vSelect,
-    CardItem,
-  },
-  data() {
-    return {
-      sortOptions: [
-        { id: "1", name: "Newest" },
-        { id: "2", name: "Oldest" },
-        { id: "3", name: "Less Voted (A > Z)" },
-        { id: "4", name: "Most Voted (Z > A)" },
-      ],
-      selectedSort: null,
-    };
-  },
-  computed: {
-    getLinks() {
-      return listItems(this.selectedSort?.id);
-    },
+    List,
   },
 };
 </script>
@@ -35,18 +16,7 @@ export default {
       </router-link>
     </b-row>
     <b-row>
-      <v-select
-        :options="sortOptions"
-        v-model="selectedSort"
-        label="name"
-      ></v-select>
+    <List />
     </b-row>
-    <CardItem
-      v-for="item in getLinks"
-      :key="item.url"
-      :name="item.name"
-      :url="item.url"
-      :vote="item.vote"
-    />
   </div>
 </template>
