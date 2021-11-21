@@ -8,7 +8,7 @@ class Service {
         const newItem = {
           name: item.name,
           url: item.url,
-          createdAt: new Date().toISOString(),
+          createdAt: new Date().getTime(),
           vote: 0,
         };
         items.push(newItem);
@@ -34,7 +34,7 @@ class Service {
 
         return {
           ...item,
-          vote:item.vote + ( type === 'upvote' ? 1 : -1),
+          vote: item.vote + (type === "upvote" ? 1 : -1),
         };
       })
     );
@@ -49,6 +49,24 @@ class Service {
     }
     this.setStorage([]);
     return [];
+  };
+
+  listItems = (sortBy) => {
+    const items = this.getItems().sort((a, b) => {
+      if (sortBy === "1") {
+        return a.createdAt - b.createdAt;
+      }
+      if (sortBy === "2") {
+        return b.createdAt - a.createdAt;
+      }
+      if (sortBy === "3") {
+        return a.vote - b.vote;
+      }
+      if (sortBy === "4") {
+        return b.vote - a.vote;
+      }
+    });
+    return items;
   };
 
   isJSON(jsonStr) {

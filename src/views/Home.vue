@@ -1,12 +1,12 @@
 <script>
 import vSelect from "vue-select";
-import { getItems } from "@/services/service";
+import { listItems } from "@/services/service";
 import CardItem from "@/components/CardItem";
 export default {
   name: "Home",
   components: {
     vSelect,
-    CardItem
+    CardItem,
   },
   data() {
     return {
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     getLinks() {
-      return getItems();
+      return listItems(this.selectedSort?.id);
     },
   },
 };
@@ -41,6 +41,12 @@ export default {
         label="name"
       ></v-select>
     </b-row>
-     <CardItem v-for="item in getLinks" :key="item.url" :name="item.name" :url="item.url" :vote="item.vote" />
+    <CardItem
+      v-for="item in getLinks"
+      :key="item.url"
+      :name="item.name"
+      :url="item.url"
+      :vote="item.vote"
+    />
   </div>
 </template>
