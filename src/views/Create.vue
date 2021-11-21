@@ -19,8 +19,22 @@ export default {
     addLink(event) {
       event.preventDefault();
       addItem(this.form)
-        .then(() => this.resetForm())
-        .catch(() => {});
+        .then(() => {
+          this.$bvToast.toast(`${this.form.name} added`, {
+            title: "Success",
+            variant: "success",
+            solid: true,
+          });
+
+          this.resetForm();
+        })
+        .catch(() => {
+          this.$bvToast.toast(`Link item already exists`, {
+            title: "Error",
+            variant: "danger",
+            solid: true,
+          });
+        });
     },
   },
 };

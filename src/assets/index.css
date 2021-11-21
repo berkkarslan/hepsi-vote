@@ -30,10 +30,6 @@
   user-select: none;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
  .paginate-links {
   list-style-type: none;
   padding: 0;
@@ -57,4 +53,21 @@ li {
 }
 a {
   color: #42b983 !important;
+}
+
+.toast-cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.toast-cont .toast.error {
+  background-color: #fff;
+  border: 1px solid red;
+  color: red;
+}
+.toast-cont .toast.success {
+  background-color: #fff;
+  border: 1px solid #42b983;
+  color: #42b983;
 }

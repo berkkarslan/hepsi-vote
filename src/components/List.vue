@@ -40,6 +40,7 @@ export default {
         @input="getData"
         v-model="selectedSort"
         label="name"
+        class="w-100"
       ></v-select>
     </b-row>
     <paginate name="links" :list="links" :per="5">
