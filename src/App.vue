@@ -23,7 +23,6 @@ export default {};
               class="
                 d-flex
                 justify-content-md-end
-                l-logo
                 justify-content-center
                 col-sm-12 col-md-6
               "
