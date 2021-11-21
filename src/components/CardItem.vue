@@ -20,7 +20,7 @@ export default {
 
 <template>
   <b-card class="mt-2 mb-2 mw-100 w-100 position-relative card-item">
-    <b-card-body>
+    
       <b-row>
         <b-col class="mb-4 mb-sm-0 col-sm-3">
           <div
@@ -61,7 +61,7 @@ export default {
           </b-row>
         </b-col>
       </b-row>
-    </b-card-body>
+    
     <b-icon-trash @click="deleteItem" class="trash-btn"></b-icon-trash>
   </b-card>
 </template>
